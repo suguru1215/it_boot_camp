@@ -1,0 +1,152 @@
+<!-- アカウント作成 -->
+<div id="signup_modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">アカウント作成</h4>
+            </div>
+            <div class="modal-body">
+                <!-- Facebook -->
+                <div class="form-group">
+                    <label for="">Facebookアカウントで作成する</label>
+                    <br>
+                    <p style="text-align:right;">
+                        <a href="/facebook_login"><button class="btn btn-primary">アカウント作成</button></a>
+                    </p>
+                </div>
+                <!-- /Facebook -->
+                <form action="/signup" method="POST">
+                    <div id="error_message" class="form-group hidden">
+                        <span class="help-block">メールアドレスもしくはパスワードが正しくありません。</span>
+                    </div>
+                    <label for="">メールアドレスで作成する</label>
+                    <br>
+                    <!-- メールアドレス -->
+                    <div class="form-group">
+                        <input id="input_email" class="form-control" placeholder="メールアドレス" type="email" name="email">
+                    </div>
+                    <!-- /メールアドレス -->
+                    <!-- パスワード -->
+                    <div class="form-group">
+                        <input id="input_password" class="form-control" placeholder="パスワード" type="password" name="password">
+                    </div>
+                    <!-- /パスワード -->
+                    <!-- 氏名 -->
+                    <div class="form-group">
+                        <input id="input_name" class="form-control" placeholder="姓 名" type="name" name="name">
+                    </div>
+                    <!-- /氏名 -->
+                    <div class="text-right">
+                        <input type="submit" class="btn btn-primary" id="signup_submit" value="アカウント作成">
+                    </div>
+                    <input type="hidden" name="_token" value="{{csrf_token}}">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <p class="text-right">
+                    すでにアカウントがありますか？&nbsp;&nbsp;<a href="#" id="switch_to_login">ログイン</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /アカウント作成 -->
+<!-- ログイン -->
+<div id="login_modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                {% if is_display_modal == 1 %}
+                <h4 class="modal-title">ログイン (<span style="color:#FF6666;">ログインが必要です</span>)</h4>
+                {% else %}
+                <h4 class="modal-title">ログイン</h4>
+                {% endif %}
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="">Facebookアカウントでログインする</label>
+                    <br>
+                    <p style="text-align:right;">
+                        <a href="/facebook_login"><button class="btn btn-primary">ログイン</button></a>
+                    </p>
+                </div>
+                <form action="/login" method="POST">
+                    <div id="error_message" class="form-group hidden">
+                        <span class="help-block">メールアドレスもしくはパスワードが正しくありません。</span>
+                    </div>
+                    <label for="">メールアドレスでログインする</label>
+                    <br>
+                    <div class="form-group">
+                        <input id="input_email" class="form-control" placeholder="メールアドレス" type="email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <input id="input_password" class="form-control" placeholder="パスワード" type="password" name="password">
+                    </div>
+                    <div class="text-right">
+                        <input type="submit" class="btn btn-primary" id="login_submit" value="ログイン">
+                    </div>
+                    <input type="hidden" name="_token" value="{{csrf_token}}">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <p class="text-right">
+                    アカウントがまだありませんか？&nbsp;&nbsp;<a href="#" id="switch_to_signup">作成</a>
+                </p>
+                <p class="text-right">
+                    パスワードをお忘れですか？&nbsp;&nbsp;<a href="#" id="switch_to_password_confirm">確認</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /ログイン -->
+<!-- 仮パスワード発行 -->
+<div id="password_confirm_modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">仮パスワード発行</h4>
+            </div>
+            <div class="modal-body">
+                <p>ご登録のメールアドレスを入力してください。</p>
+                <form>
+                    <div class="form-group">
+                        <label for="input_email">メールアドレス</label>
+                        <input id="confirm_password_input_email" class="form-control" placeholder="" type="email">
+                    </div>
+                    <div class="text-right">
+                        <button id="button_confirm_password" type="button" class="btn btn-primary">送信する</button>
+                    </div>
+                    <input type="hidden" name="_token" value="{{csrf_token}}">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /仮パスワード発行 -->
+<!-- 仮パスワード発行完了 -->
+<div id="password_confirm_modal_complete" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">仮パスワード発行完了</h4>
+            </div>
+            <div class="modal-body">
+                <p>仮パスワードを発行しました。</p>
+                <p>ご登録のメールアドレスに送信しています。</p>
+                <p>仮パスワードでログイン後、マイページでお好きなパスワードに変更してください。</p>
+                <form>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                    </div>
+                    <input type="hidden" name="_token" value="{{csrf_token}}">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /仮パスワード発行完了 -->

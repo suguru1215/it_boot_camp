@@ -1,0 +1,21 @@
+{% extends "/layouts/base.twig" %}
+{% block content %}
+{% include "/elements/header.twig" %}
+{% include "/elements/navigation.twig" %}
+<div class="container two-column">
+    <div class="row">
+        {% include "/elements/admin_left_column.twig" %}
+        <div class="col-sm-9 content">
+            <h1>レッスン詳細ページ</h1>
+            <p>カリキュラム: {{lessen_data["caliculam_title"]}}</p>
+            <p>レッスン画像: <img src="/uploads/lessen/{{lessen_data['lessen_image']}}" alt="" width="80"></p>
+            <p>レッスンタイトル: {{lessen_data["lessen_title"]}}</p>
+            <p>レッスンPRテキスト: {{lessen_data["lessen_pr_text"]}}</p>
+            <p>レッスンテキスト: {{lessen_data["lessen_text"] |slice(0, 30)}}&nbsp;...</p>
+            <p>レッスン更新日時: {{lessen_data["updated_at"] |date("Y年m月d日 H時i分")}}</p>
+            <hr>
+            <p><a href="/admin/lessen/edit/{{lessen_data['lessen_id']}}/">このレッスンを編集する</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

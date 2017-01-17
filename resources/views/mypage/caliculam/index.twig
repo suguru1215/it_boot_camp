@@ -1,0 +1,28 @@
+{% extends "/layouts/base.twig" %}
+{% block content %}
+{% include "/elements/header.twig" %}
+{% include "/elements/navigation.twig" %}
+<div class="container two-column">
+    <div class="row">
+        {% include "/elements/mypage_left_column.twig" %}
+        <div class="col-sm-9 content">
+            <h1>カリキュラム一覧ページ</h1>
+            {% if caliculam_data_list |length < 1 %}
+            <p>申し込めるカリキュラムはありません。</p>
+            {% else %}
+            {% for caliculam_data in caliculam_data_list %}
+            <p>カリキュラム画像: <img src="/uploads/caliculam/{{caliculam_data['caliculam_image']}}" alt="" width="80"></p>
+            <p>カリキュラムタイトル: {{caliculam_data["caliculam_title"]}}</p>
+            <p>カリキュラム価格: {{caliculam_data["caliculam_price"]}}</p>
+            <p>カリキュラムPRテキスト: {{caliculam_data["caliculam_pr_text"]}}</p>
+            <p>カリキュラムテキスト: {{caliculam_data["caliculam_text"] |slice(0, 30)}}&nbsp;...</p>
+            <p>カリキュラム更新日時: {{caliculam_data["updated_at"] |date("Y年m月d日 H時i分")}}</p>
+            <p><a href="/mypage/caliculam/{{caliculam_data['caliculam_id']}}/">カリキュラムを見る</a></p>
+            <hr>
+            <p><a href="/mypage/caliculam/regist/{{caliculam_data['caliculam_id']}}/">カリキュラムに申し込む</a></p>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

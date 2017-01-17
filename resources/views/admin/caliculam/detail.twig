@@ -1,0 +1,38 @@
+{% extends "/layouts/base.twig" %}
+{% block content %}
+{% include "/elements/header.twig" %}
+{% include "/elements/navigation.twig" %}
+<div class="container two-column">
+    <div class="row">
+        {% include "/elements/admin_left_column.twig" %}
+        <div class="col-sm-9 content">
+            <h1>カリキュラム詳細ページ</h1>
+            <p>カリキュラム画像: <img src="/uploads/caliculam/{{caliculam_data['caliculam_image']}}" alt="" width="80"></p>
+            <p>カリキュラム値段: {{caliculam_data["caliculam_price"]}}</p>
+            <p>カリキュラムタイトル: {{caliculam_data["caliculam_title"]}}</p>
+            <p>カリキュラムPRテキスト: {{caliculam_data["caliculam_pr_text"]}}</p>
+            <p>カリキュラムテキスト: {{caliculam_data["caliculam_text"] |nl2br}}</p>
+            <p>カリキュラム更新日時: {{caliculam_data["updated_at"] |date("Y年m月d日 H時i分")}}</p>
+            <hr>
+            <p><a href="/admin/caliculam/edit/{{caliculam_data['caliculam_id']}}/">このカリキュラムを編集する</a></p>
+            <hr>
+            {% if lessen_data_list |length < 1 %}
+            <p>表示できるレッスンはありません</p>
+            {% else %}
+            <h2>レッスン一覧</h2>
+            {% for lessen_data in lessen_data_list %}
+            <p>カリキュラム: {{lessen_data["caliculam_title"]}}</p>
+            <p>レッスン画像: <img src="/uploads/lessen/{{lessen_data['lessen_image']}}" alt="" width="80"></p>
+            <p>レッスンタイトル: {{lessen_data["lessen_title"]}}</p>
+            <p>レッスンPRテキスト: {{lessen_data["lessen_pr_text"]}}</p>
+            <p>レッスンテキスト: {{lessen_data["lessen_text"] |slice(0, 30)}}&nbsp;...</p>
+            <p>レッスン更新日時: {{lessen_data["updated_at"] |date("Y年m月d日 H時i分")}}</p>
+            <p><a href="/admin/lessen/edit/{{lessen_data['lessen_id']}}/">このレッスンを編集する</a></p>
+            <hr>
+            {% endfor %}
+            {% endif %}
+            <p><a href="/admin/lessen/edit/?caliculam_id={{caliculam_data['caliculam_id']}}">レッスンを登録する</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

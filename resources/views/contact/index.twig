@@ -1,0 +1,167 @@
+{% extends "/layouts/base.twig" %}
+{% block content %}
+{% include "/elements/header.twig" %}
+<h1>詳しい話を聞く</h1>
+<br>
+<h4>ウェブデザイン 女性限定キャンペーン</h4>
+<p><a href="/cam_lp-2/">詳しくはこちら</a></p>
+<br>
+<hr>
+<h4>まずはカウンセリング、面談を受けてみませんか？</h4>
+<p>どのコースを受講すればいいのかよくわからない</p>
+<p>今はお金がないけど、いつか参加してみたい</p>
+<p>卒業後どんな道があるのかだけ、聞いてみたい</p>
+<p>教室の施設の詳細を聞きたい</p>
+<p>キャンプ地の周辺情報を知りたい</p>
+<p>興味があるので詳しく聞いてみたい</p>
+<p>など、ちょっとでも気になることがあればまずはカウンセリング、面談を受けてみませんか？  スカイプ、またはお電話にて対応いたします。</p>
+<br>
+<hr>
+<h4>お申込み、入隊までの流れ</h4>
+<p>フォームからカウンセリング、面談の申込み</p>
+<p>スカイプ、またはお電話にて ※面談後に辞退することが可能です。</p>
+<p>入隊手続き</p>
+<p>ご入金 ※ご入金後でも入隊14日前まではキャンセルすることが可能です。 キャンセルの場合、キャンセル料として3万円頂いております。</p>
+<p>カリュキュラム事前準備、宿泊先手配</p>
+<p>入隊</p>
+<br>
+<hr>
+<h4>お気軽にご相談下さい</h4>
+<form action="" method="POST">
+    <!-- お名前 -->
+    <div>
+        <label>
+            (必須)&nbsp;お名前&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name="user_name_famiry" placeholder="山田" value="">
+            <input type="text" name="user_name_first" placeholder="太郎" value="">
+        </label>
+    </div>
+    <!-- /お名前 -->
+    <!-- フリガナ -->
+    <div>
+        <label>
+            (必須)&nbsp;フリガナ&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name="user_name_kana_famiry" placeholder="ヤマダ" value="">
+            <input type="text" name="user_name_kana_first" placeholder="タロウ" value="">
+        </label>
+    </div>
+    <!-- /フリガナ -->
+    <!-- 現住所 -->
+    <div>
+        <label>
+            (必須)&nbsp;現住所&nbsp;&nbsp;&nbsp;&nbsp;
+            <select name="user_prefecture">
+                <option value=""> - 都道府県 - </option>
+                {% for prefecture_key, prefecture_data in prefecture_data_list %}
+                {% if input["prefecture_data"] == prefecture_data %}
+                <option value="{{prefecture_key}}" selected>{{prefecture_data}}</option>
+                {% else %}
+                <option value="{{prefecture_key}}">{{prefecture_data}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+        </label>
+    </div>
+    <!-- /現住所 -->
+    <!-- 会社名 -->
+    <div>
+        <label>
+            会社名 (法人の場合) *法人割引対象&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name="user_company_name" placeholder="法人名" value="">
+        </label>
+    </div>
+    <!-- /会社名 -->
+    <!-- メール -->
+    <div>
+        <label>
+            (必須)&nbsp;メール&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name="user_email" value="">
+        </label>
+    </div>
+    <!-- /お名前 -->
+    <!-- 電話番号 -->
+    <div>
+        <label>
+            (必須)&nbsp;電話番号&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name="user_tel" value="">
+        </label>
+    </div>
+    <!-- /電話番号 -->
+    <!-- 年代 -->
+    <div>
+        <label>
+            (必須)&nbsp;年代&nbsp;&nbsp;&nbsp;&nbsp;
+            <select name="user_generation">
+                <option value=""> - 選択 - </option>
+                {% for generation_key, generation_data in generation_data_list %}
+                {% if input["generation_data"] == generation_data %}
+                <option value="{{generation_key}}" selected>{{generation_data}}</option>
+                {% else %}
+                <option value="{{generation_key}}">{{generation_data}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+        </label>
+    </div>
+    <!-- /年代 -->
+    <!-- 性別 -->
+    <div>
+        <label>
+            (必須)&nbsp;性別&nbsp;&nbsp;&nbsp;&nbsp;
+            <select name="user_gender">
+                <option value=""> - 選択 - </option>
+                {% for gender_key, gender_data in gender_data_list %}
+                {% if input["gender_data"] == gender_data %}
+                <option value="{{gender_key}}" selected>{{gender_data}}</option>
+                {% else %}
+                <option value="{{gender_key}}">{{gender_data}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+        </label>
+    </div>
+    <!-- /性別 -->
+    <!-- 卒業後の進路希望 -->
+    <div>
+        <label>
+            (必須)&nbsp;卒業後の進路希望&nbsp;*複数選択可&nbsp;&nbsp;&nbsp;
+            {% for future_key, future_data in future_data_list %}
+            {% if input["future_data"] == future_data %}
+            <input type="checkbox" name="user_future" value="{{future_key}}" checked>&nbsp;&nbsp;{{future_data}}
+            {% else %}
+            <input type="checkbox" name="user_future" value="{{future_key}}">&nbsp;&nbsp;{{future_data}}
+            {% endif %}
+            {% endfor %}
+        </label>
+    </div>
+    <!-- /卒業後の進路希望 -->
+    <!-- コース選択 -->
+    <div>
+        <label>
+            (必須)&nbsp;コース選択&nbsp;*宿泊費別途&nbsp;&nbsp;&nbsp;
+            <select name="user_course">
+                {% for course_key, course_data in course_data_list %}
+                {% if input["course_data"] == course_data %}
+                <option value="{{course_key}}" selected>{{course_data}}</option>
+                {% else %}
+                <option value="{{course_key}}">{{course_data}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+        </label>
+    </div>
+    <!-- /コース選択 -->
+    <!-- 希望開始日 -->
+    <div>
+        <label>
+            (必須)&nbsp;希望開始日、面談希望日と可能時間帯をご記入ください。ご不明な点があればお気軽にご記入ください。 ※キャンペーンコードはこちらにご入力ください。<br>
+            <textarea type="text" name="user_interview" rows="6" cols="70"></textarea>
+        </label>
+    </div>
+    <!-- /希望開始日 -->
+    <p>個人情報について&nbsp;&nbsp;&nbsp;<button>個人情報保護方針</button></p>
+    <input type="checkbox" name="is_approve_policy" value="">&nbsp;IBC個人情報【同意チェック】&nbsp;
+    <input type="submit" value="送信する">
+    <input type="hidden" name="_token" value="{{csrf_token}}">
+</form>
+{% endblock %}

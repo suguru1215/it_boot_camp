@@ -1,0 +1,24 @@
+{% extends "/layouts/base.twig" %}
+{% block content %}
+{% include "/elements/header.twig" %}
+{% include "/elements/navigation.twig" %}
+<hr>
+<h1>管理画面ユーザー一覧</h1>
+{% include "/elements/admin_left_column.twig" %}
+<hr>
+{% if user_data_list |length < 1 %}
+<p>表示できるユーザーはいません．</p>
+{% else %}
+{% for user_data in user_data_list %}
+<p><a href="/admin/user/{{user_data['user_id']}}/"><img src="/uploads/profile/{{user_data['user_image']}}" width="100" alt=""></a></p>
+<p>ID: {{user_data["user_id"]}}</p>
+<p>名前: {{user_data["user_real_name"]}}</p>
+<p>表示名: {{user_data["user_name"]}}</p>
+<p>メールアドレス: {{user_data["user_email"]}}</p>
+<p>生年月日: {{user_data["user_birthday"] |date("Y年m月d日")}}</p>
+<p>住所: {{user_data["user_address"]}}</p>
+<p>PR文: {{user_data["user_pr_text"] |nl2br}}</p>
+<p>登録日: {{user_data["created_at"]}}</p>
+{% endfor %}
+{% endif %}
+{% endblock %}

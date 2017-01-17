@@ -1,0 +1,34 @@
+<!-- facebook -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+{% if seo_tag["facebook_title"] |length > 0 %}
+<meta property="og:title" content="{{seo_tag['facebook_title']}}">
+{% else %}
+<meta property="og:title" content="ITブートキャンプ">
+{% endif %}
+{% if seo_tag["facebook_image"] |length > 0 %}
+<meta property="og:image" content="{{seo_tag['facebook_image']}}">
+{% else %}
+<meta property="og:image" content="">
+{% endif %}
+<meta property="og:description" content="">
+<meta property="og:site_name" content="ITブートキャンプ">
+<meta name="twitter:url" content="{{request_url}}">
+<!-- /facebook -->
+<!-- twitter -->
+<meta name="twitter:card" content="summary_large_image">
+{% if seo_tag["twitter_title"] |length > 0 %}
+<meta name="twitter:title" content="{{seo_tag['twitter_title']}}">
+{% else %}
+<meta name="twitter:title" content="ITブートキャンプ">
+{% endif %}
+{% if seo_tag["twitter_image"] |length > 0 %}
+<meta name="twitter:image" content="{{seo_tag['twitter_image']}}">
+{% else %}
+<meta property="og:image" content="">
+{% endif %}
+<meta name="twitter:description" content="">
+<meta name="twitter:site" content="">
+<meta name="twitter:creator" content="">
+<meta name="twitter:url" content="{{request_url}}">
+<!-- /twitter -->

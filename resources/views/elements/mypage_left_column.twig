@@ -1,0 +1,45 @@
+<div class="col-sm-3 sidebar">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <!-- プロフィール画像 -->
+            <div class="">
+                <a href="/mypage/"><img src="/uploads/profile/{{user_data.user_image}}" width="90" class="avatar"></a>
+            </div>
+            <!-- /プロフィール画像 -->
+            <!-- プロフィール名 -->
+            <div class="text-center">
+                <p><a href="/mypage/" style="color:#000000;">{{user_data.user_name}}</a></p>
+            </div>
+            <!-- /プロフィール名 -->
+        </div>
+    </div>
+    <div id="sidemenu">
+        <ul class="list-group">
+            <!-- プロフィール編集 -->
+            <li class="">
+                <a href="/mypage/profile/input/">プロフィール編集</a>
+            </li>
+            <!-- /プロフィール編集 -->
+            <!-- パスワード変更 -->
+            <li class="">
+                <a href="/mypage/password/input/">パスワード変更</a>
+            </li>
+            <!-- /パスワード変更 -->
+            <!-- カリキュラム申し込み -->
+            <li class="">
+                <a href="/mypage/caliculam_list/">カリキュラム申し込み</a>
+            </li>
+            <!-- /カリキュラム申し込み -->
+            <!-- メッセージ一覧 -->
+            <li class="">
+                <a href="/mypage/message_list/">メッセージ</a>
+            </li>
+            <!-- /メッセージ一覧 -->
+            <!-- ログアウト -->
+            <li class="">
+                <a href="/logout/">ログアウト</a>
+            </li>
+            <!-- /ログアウト -->
+        </ul>
+    </div>
+</div>

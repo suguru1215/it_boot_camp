@@ -1,0 +1,101 @@
+{% extends "/layouts/base.twig" %}
+{% block content %}
+{% include "/elements/header.twig" %}
+{% include "/elements/navigation.twig" %}
+<div class="container two-column">
+    <div class="row">
+        {% include "/elements/admin_left_column.twig" %}
+        <div class="col-sm-9 content">
+            {% if lessen_data |length > 0 %}
+            <h1>レッスン編集ページ</h1>
+            {% else %}
+            <h1>レッスン作成ページ</h1>
+            {% endif %}
+            <form action="/admin/lessen/confirm" enctype="multipart/form-data" method="POST">
+                <!-- サムネイル画像 -->
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="">サムネイル画像</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="clearfix">
+                            <div class="">
+                                {% if lessen_data |length > 0 %}
+                                <img src="/uploads/lessen/{{lessen_data['lessen_image']}}" class="" width="100">
+                                {% else %}
+                                <img src="/uploads/lessen/no_image.png" class="" width="100">
+                                {% endif %}
+                            </div>
+                            <div class="clearfix">
+                                <input type="file" name="lessen_image" class="uploader" id="upload_profile_image">
+                                <p>※ 画像は2MB以内で<br>拡張子がjpeg(jpg)かpngの画像をご使用ください。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /サムネイル画像 -->
+                <!-- カリキュラム -->
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="">カリキュラム</label>
+                    </div>
+                    <select name="lessen_caliculam_id">
+                        {% for caliculam_data in caliculam_data_list %}
+                        {% if caliculam_data["caliculam_id"] == lessen_data["lessen_caliculam_id"] %}
+                        <option value="{{caliculam_data['caliculam_id']}}" selected>{{caliculam_data["caliculam_title"]}}</option>
+                        {% endif %}
+                        <option value="{{caliculam_data['caliculam_id']}}">{{caliculam_data["caliculam_title"]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <!-- /カリキュラム -->
+                <!-- タイトル -->
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="">タイトル</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="" style="margin-bottom: 15px;">
+                            <input type="text" name="lessen_title" value="{{lessen_data['lessen_title']}}">
+                        </div>
+                    </div>
+                </div>
+                <!-- /タイトル -->
+                <!-- PR文 -->
+                <div class="row input-area">
+                    <div class="col-sm-4">
+                        <label for="">PR文</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="" style="margin-bottom: 15px;">
+                            <input type="text" name="lessen_pr_text" value="{{lessen_data['lessen_pr_text']}}">
+                        </div>
+                    </div>
+                </div>
+                <!-- /PR文 -->
+                <!-- テキスト -->
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="">テキスト</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <textarea name="lessen_text" id="" cols="70" rows="10">{{lessen_data["lessen_text"]}}</textarea>
+                    </div>
+                </div>
+                <!-- /テキスト -->
+                <div class="btn-wrapper update">
+                    {% if lessen_data |length > 0 %}
+                    <input class="btn btn-green" id="submit" type="submit" value="この情報に更新する">
+                    {% else %}
+                    <input class="btn btn-green" id="submit" type="submit" value="この情報で登録する">
+                    {% endif %}
+                </div>
+                {% if lessen_data |length > 0 %}
+                <input type="hidden" name="lessen_id" value="{{lessen_data.lessen_id}}">
+                {% endif %}
+                <input type="hidden" name="_token" value="{{csrf_token}}">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "/layouts/base.twig" %}
+{% block content %}
+{% include "/elements/header.twig" %}
+<h1>採用したい</h1>
+<br>
+<h3>こんな企業様に</h3>
+<p>IBCの卒業生は未経験者に限らず、</p>
+<p>バラエティに富んだ様々なバックグラウンドを持っています。</p>
+<br>
+<p>SEをやっていてフロント言語を学びに来た人</p>
+<p>スキルUPのためWordPressのみ集中的に学びに来た人</p>
+<p>映像制作をしていた人</p>
+<p>WEBディレクターをしていた人</p>
+<p>広告営業をしていた人</p>
+<p>アドプランナーをしていた人</p>
+<p>ライターをしていた人　etc…</p>
+<br>
+<p>またIBCでは、就職転職を求める卒業生の採用ハードルを下げるため、</p>
+<p>業界最安値といえる採用決定手数料にてご紹介させて頂いております。</p>
+<p>※ 採用にいたらなかった場合は、費用が発生することは一切ございません</p>
+<p>卒業生のスキルやパーソナリティについて興味がある人事担当者様は、</p>
+<p>まずは下記のフォームよりメール登録をお願いします。</p>
+<p>※ 解除もワンクリックで可能です。</p>
+<p>気になる人がいたら、簡単にオファーをかけて、実際にコンタクトをとったり面接することが可能です。</p>
+<br>
+<hr>
+<h3>登録・解除フォーム</h3>
+<p>ご登録されたいE-mailアドレスを入力し、ご希望の項目ボタンを押してください。</p>
+<form action="" method="POST">
+    <!-- メールアドレス -->
+    <div>
+        <label>
+            <input type="text" name="name_famiry" placeholder="メールアドレスを入力して登録" value="">
+        </label>
+    </div>
+    <!-- /メールアドレス -->
+    <input type="checkbox" name="is_approve_policy" value="">&nbsp;IBC個人情報【同意チェック】&nbsp;
+    <input type="submit" value="登録">
+    <input type="submit" value="解除">
+    <input type="submit" value="編集">
+    <input type="hidden" name="_token" value="{{csrf_token}}">
+</form>
+<br>
+<hr>
+<p>また、本格的に生徒の採用活動をしたい企業様には、弊社の採用コンサルタントが担当し、</p>
+<p>企業情報を生徒へ紹介したり、採用企画を生徒のカリュキュラムに提案することなどが可能です。</p>
+<p>詳しくお話を聞いてみたい方は、下記フォームよりお問い合わせください。</p>
+{% include "/elements/form_company.twig" %}
+<br>
+<hr>
+<p>LINE@  LINE@では卒業後のお仕事や島のシェアハウスの風景など非公開情報を公開します！</p>
+{% endblock %}

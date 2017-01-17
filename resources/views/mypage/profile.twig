@@ -1,0 +1,124 @@
+{% extends "/layouts/base.twig" %}
+{% block content %}
+{% include "/elements/header.twig" %}
+{% include "/elements/navigation.twig" %}
+<div class="">
+    <div class="">
+        <div class="col-sm-12 single-top">
+        </div>
+        {% include "/elements/mypage_left_column.twig" %}
+        <div class="col-sm-9 content">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h2>プロフィール編集</h2>
+                    <section>
+                        <form action="/mypage/profile/confirm" enctype="multipart/form-data" method="POST">
+                            <!-- プロフィール画像 -->
+                            <div class="row input-area">
+                                <div class="col-sm-4">
+                                    <label for="">プロフィール画像</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="avatar_upload clearfix">
+                                        <div class="avatar_content pull-left">
+                                            <img src="/uploads/profile/{{user_profile_data['user_image']}}" class="avatar" width="100" height="100">
+                                        </div>
+                                        <div class="avatar_uploader clearfix">
+                                            <input type="file" name="user_image" class="uploader" id="upload_profile_image">
+                                            <p>※ 画像は2MB以内で<br>拡張子がjpeg(jpg)かpngの画像をご使用ください。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /プロフィール画像 -->
+                            <!-- 表示名 -->
+                            <div class="row input-area">
+                                <div class="col-sm-4">
+                                    <label for="">ニックネーム</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="user_name" style="margin-bottom: 15px;">
+                                        <input type="text" name="user_name" value="{{user_profile_data['user_name']}}">
+                                    </div>
+                                    <p class="small">※ 現在、やり取りしているメッセージ等の名前は変更されません</p>
+                                </div>
+                            </div>
+                            <!-- /表示名 -->
+                            <!-- 登録名 -->
+                            <div class="row input-area">
+                                <div class="col-sm-4">
+                                    <label for="">名前</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="user_real_name" style="margin-bottom: 15px;">
+                                        <input type="text" name="user_real_name" value="{{user_profile_data['user_real_name']}}">
+                                    </div>
+                                    <p class="small">※ サイトには表示されません</p>
+                                </div>
+                            </div>
+                            <!-- /登録名 -->
+                            <!-- メールアドレス -->
+                            <div class="row input-area">
+                                <div class="col-sm-4">
+                                    <label for="">メールアドレス</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" name="user_email" value="{{user_profile_data['user_email']}}">
+                                </div>
+                            </div>
+                            <!-- /メールアドレス -->
+{#
+                            <!-- 誕生日 -->
+                            <div class="row input-area">
+                                <div class="col-sm-4">
+                                    <label for="">誕生日</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" name="user_birthday" value="{{user_profile_datap['user_birthday']}}">
+                                </div>
+                            </div>
+                            <!-- /誕生日 -->
+                            <!-- 性別 -->
+                            <div class="row input-area">
+                                <div class="col-sm-4">
+                                    <label for="">性別</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" name="user_gender" value="{{user_profile_data['user_gender']}}">
+                                </div>
+                            </div>
+                            <!-- /性別 -->
+#}
+                            <!-- 居住地 -->
+                            <div class="row input-area">
+                                <div class="col-sm-4">
+                                    <label for="">居住地</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <textarea name="user_address" id="" cols="70" rows="3" placeholder="東京都">{{user_profile_data["user_address"]}}</textarea>
+                                </div>
+                            </div>
+                            <!-- /居住地 -->
+                            <!-- 簡単な自己紹介 -->
+                            <div class="row input-area">
+                                <div class="col-sm-4">
+                                    <label for="">簡単な自己紹介</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <textarea name="user_pr_text" id="" cols="70" rows="10">{{user_profile_data["user_pr_text"]}}</textarea>
+                                </div>
+                            </div>
+                            <!-- /簡単な自己紹介 -->
+                            <div class="btn-wrapper update">
+                                <input class="btn btn-green" id="submit" type="submit" value="この情報に更新する">
+                            </div>
+                            <input type="hidden" name="user_id" value="{{user_profile_data.user_id}}">
+                            <input type="hidden" name="_token" value="{{csrf_token}}">
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

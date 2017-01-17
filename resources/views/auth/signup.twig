@@ -1,0 +1,45 @@
+{% extends "/layouts/base.twig" %}
+{% block content %}
+{% include "/elements/header.twig" %}
+<div>
+    <!-- Twitterで会員登録 -->
+    <div class="form-group">
+        <label>Twitterアカウントで作成する</label>
+        <br>
+        <p style="text-align:right;">
+            <a href="/twitter_login"><button class="btn btn-primary only_one_click_button">アカウント作成</button></a>
+        </p>
+    </div>
+    <!-- /Twitterで会員登録 -->
+    <!-- メールアドレスで会員登録 -->
+    <form action="/signup_confirm" method="POST">
+        <label>メールアドレスで作成する</label>
+        <br>
+        {% if error_message |length > 0 %}
+        <div id="error_message" class="form-group">
+            <span class="help-block" style="color:#D8127D;">{{error_message}}</span>
+        </div>
+        {% endif %}
+        <!-- メールアドレス -->
+        <div class="form-group">
+            <input id="input_email" class="form-control" placeholder="メールアドレス" type="email" name="email">
+        </div>
+        <!-- /メールアドレス -->
+        <!-- パスワード -->
+        <div class="form-group">
+            <input id="input_password" class="form-control" placeholder="パスワード" type="password" name="password">
+        </div>
+        <!-- /パスワード -->
+        <!-- 氏名 -->
+        <div class="form-group">
+            <input id="input_name" class="form-control" placeholder="姓 名" type="name" name="name">
+        </div>
+        <!-- /氏名 -->
+        <div class="text-right">
+            <input type="submit" class="btn btn-primary" id="signup_submit" value="アカウント作成">
+        </div>
+        <input type="hidden" name="_token" value="{{csrf_token}}">
+    </form>
+    <!-- /メールアドレスで会員登録 -->
+</div>
+{% endblock %}

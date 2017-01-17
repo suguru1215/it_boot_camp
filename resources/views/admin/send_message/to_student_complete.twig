@@ -1,0 +1,16 @@
+{% extends "/layouts/base.twig" %}
+{% block content %}
+{% include "/elements/header.twig" %}
+{% include "/elements/navigation.twig" %}
+<hr>
+<h1>管理画面トップ</h1>
+{% include "/elements/admin_left_column.twig" %}
+<div class="container">
+    <div class="row">
+        <div class="content">
+            <p>学生向けのメッセージ送信を完了しました。</p>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="active_menu" value="8">
+{% endblock %}

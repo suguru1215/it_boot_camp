@@ -1,0 +1,29 @@
+{% extends "/layouts/base.twig" %}
+{% block content %}
+{% include "/elements/header.twig" %}
+<div>
+    <!-- メールアドレスで会員登録 -->
+    <form action="/login_confirm" method="POST">
+        <label>メールアドレスでログインする</label>
+        <br>
+        {% if error_message |length > 0 %}
+        <div id="error_message" class="form-group">
+            <span class="help-block" style="color:#D8127D;">{{error_message}}</span>
+        </div>
+        {% endif %}
+        <div class="form-group">
+            <input id="input_email" class="form-control" placeholder="メールアドレス" type="email" name="email">
+        </div>
+        <div class="form-group">
+            <input id="input_password" class="form-control" placeholder="パスワード" type="password" name="password">
+        </div>
+        <div class="text-right">
+            <input type="submit" class="btn btn-primary" id="login_submit" value="ログイン">
+        </div>
+        <input type="hidden" name="_token" value="{{csrf_token}}">
+    </form>
+    <!-- /メールアドレスで会員登録 -->
+    <!-- Twitterで会員登録 -->
+    <!-- /Twitterで会員登録 -->
+</div>
+{% endblock %}

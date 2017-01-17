@@ -1,0 +1,22 @@
+{% extends "/layouts/base.twig" %}
+{% block content %}
+{% include "/elements/header.twig" %}
+{% include "/elements/navigation.twig" %}
+<div class="container two-column">
+    <div class="row">
+        <div class="col-sm-12 single-top">
+        </div>
+        {% include "/elements/mypage_left_column.twig" %}
+        <div class="col-sm-9 content">
+            <h1>レッスン一覧ページ</h1>
+            {% if lessen_data_list |length < 1 %}
+            <p>申し込めるレッスンはありません。</p>
+            {% else %}
+            {% for lessen_data in lessen_data_list %}
+            {{dump(lessen_data)}}
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
